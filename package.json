@@ -5,19 +5,14 @@
     "devDependencies": {
         "@types/react": "^18.0.25",
         "@types/react-dom": "^18.0.9",
-        "browserify": "^17.0.0",
-        "clean-css": "^5.2.4",
-        "clean-css-cli": "^5.3.0",
-        "eslint": "^8.25.0",
         "parcel": "^2.8.0",
-        "uglify-js": "^3.17.4",
-        "watchify": "^4.0.0"
+        "process": "^0.11.10"
     },
     "license": "MIT",
     "source": "src/index.html",
     "scripts": {
         "start": "parcel",
-        "build": "parcel build src/index.html"
+        "build": "parcel build src/index.html --public-url /pseudo-code-editor --dist-dir docs"
     },
     "dependencies": {
         "html2canvas": "^1.4.1",

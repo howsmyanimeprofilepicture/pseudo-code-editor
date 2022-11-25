@@ -12,11 +12,17 @@ export function App() {
     const [b64, setB64] = useState("");
     const render = (script) => {
         const target = document.createElement("pre");
-        target.innerHTML = script
-        setRendered(
-            renderElement(target, {
+        target.innerHTML = script       
+        
+        try{
+            const result = renderElement(target, {
                 captionCount: 0
-            }).outerHTML)
+            })
+            setRendered(result.outerHTML)
+        }
+        catch(e){
+            setRendered("Parsing Error!! 🤬🤬")
+        }
     }
 
     useEffect(()=>{
@@ -31,7 +37,6 @@ export function App() {
             onChange={e => {
                 e.preventDefault();
                 setRawScript(e.target.value);
-                console.log(rawScript)
                 render(e.target.value);
             }}
             value={rawScript}
