@@ -34,7 +34,7 @@
     "source": "src/index.html",
     "scripts": {
         "start": "parcel",
-        "build": "parcel build"
+        "build": "sh build.sh"
     },
     "dependencies": {
         "html2canvas": "^1.4.1",
