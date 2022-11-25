@@ -22,6 +22,7 @@ export function App() {
         }
         catch(e){
             setRendered("Parsing Error!! 🤬🤬")
+            console.log(e)
         }
     }
 
