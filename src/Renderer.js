@@ -1,26 +1,8 @@
-/*
-* */
-import {isString} from './utils';
 
-/*
- * TextStyle - used by TextEnvironment class to handle LaTeX text-style
- * commands or declarations.
- *
- * The font declarations are:
- *  \normalfont, \rmfamily, \sffamily, \ttfamily,
- *  \bfseries, \mdseries, \lfseries,
- *  \upshape, \itshape, \scshape, \slshape.
- *
- * The font commands are:
- *  \textnormal{}, \textrm{}, \textsf{}, \texttt{},
- *  \textbf{}, \textmd{}, \textlf{},
- *  \textup{}, \textit{}, \textsc{}, \textsl{},
- *  \uppercase{}, \lowercase{}.
- *
- * The sizing commands are:
- *  \tiny, \scriptsize, \footnotesize, \small, \normalsize,
- *  \large, \Large, \LARGE, \huge, \Huge.
- **/
+import {isString} from './utils';
+import katex from "katex";
+
+
 function TextStyle(outerFontSize) {
     this._css = {};
 
@@ -452,30 +434,12 @@ function Renderer(parser, options) {
     this._globalTextStyle = new TextStyle();
     this.backend = undefined;
 
-    try {
-        if (typeof katex === 'undefined')
-            katex = require('katex');
-    }
-    catch (_) { /* ignore */ }
+    
+    this.backend = {
+        'name' : 'katex',
+        'driver' : katex,
+    };
 
-    try {
-        if (typeof MathJax === 'undefined')
-            MathJax = require('mathjax');
-    }
-    catch (_) { /* ignore */ }
-
-    if (typeof katex !== 'undefined') {
-        this.backend = {
-            'name' : 'katex',
-            'driver' : katex,
-        };
-    }
-    else if (typeof MathJax !== 'undefined') {
-        this.backend = {
-            'name' : 'mathjax',
-            'driver' : MathJax,
-        };
-    }
 }
 
 /*  The global counter for the numbering of the algorithm environment */
@@ -682,7 +646,7 @@ Renderer.prototype._buildTree = function(node) {
             // </p>
             this._newLine();
             this._typeKeyword('if ');
-            ifCond = node.children[0];
+            let ifCond = node.children[0];
             this._buildTree(ifCond);
             this._typeKeyword(' then');
             // <block>

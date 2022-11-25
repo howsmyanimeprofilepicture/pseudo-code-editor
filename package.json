@@ -12,6 +12,7 @@
     "source": "src/index.html",
     "scripts": {
         "start": "parcel",
+        "buildTest": "parcel build src/index.html --public-url /docs --dist-dir docs",
         "build": "parcel build src/index.html --public-url /pseudo-code-editor --dist-dir docs"
     },
     "dependencies": {
