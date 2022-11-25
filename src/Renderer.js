@@ -368,7 +368,7 @@ HTMLBuilder.prototype._beginTag = function(tag, className, style, extraStyle) {
         else { // style
             styleCode = '';
             for (var attrName in style) {
-                attrVal = style[attrName];
+                let attrVal = style[attrName];
                 styleCode += attrName + ':' + attrVal + ';';
             }
         }
