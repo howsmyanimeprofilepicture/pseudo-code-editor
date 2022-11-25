@@ -1,3 +1,6 @@
+import React from "react";
+
+
 const initialRawScript = `\\begin{algorithm}
 \\caption{Quicksort}
 \\begin{algorithmic}
