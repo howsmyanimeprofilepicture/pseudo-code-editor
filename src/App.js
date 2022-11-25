@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import pseudocode from "./pseudocode";
+import {renderElement} from "./pseudocode";
 import "./App.css"
 import "./pseudocode.css"
 import {initialRawScript} from "./constants";
@@ -14,8 +14,7 @@ export function App() {
         const target = document.createElement("pre");
         target.innerHTML = script
         setRendered(
-            pseudocode
-            .renderElement(target, {
+            renderElement(target, {
                 captionCount: 0
             }).outerHTML)
     }

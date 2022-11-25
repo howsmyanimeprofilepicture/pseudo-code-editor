@@ -2,10 +2,10 @@
  * The entry points of pseudocode-js
  **/
 
-var ParseError = require('./ParseError');
-var Lexer = require('./Lexer');
-var Parser = require('./Parser');
-var Renderer = require('./Renderer');
+import ParseError from './ParseError';
+import Lexer from './Lexer';
+import Parser from './Parser';
+import Renderer from './Renderer';
 
 function makeRenderer(data, options) {
     var lexer = new Lexer(data);
@@ -24,54 +24,58 @@ function mathjaxTypeset(elem) {
     }
 }
 
-module.exports = {
-    ParseError: ParseError,
-    render: function(input, baseDomEle, options) {
-        if (input === null || input === undefined)
-            throw 'input cannot be empty';
 
-        var renderer = makeRenderer(input, options);
-        var elem = renderer.toDOM();
-        if (baseDomEle) baseDomEle.appendChild(elem);
+function render(input, baseDomEle, options) {
+    if (input === null || input === undefined)
+        throw 'input cannot be empty';
 
-        if (renderer.backend.name === 'mathjax') {
-            mathjaxTypeset(elem);
+    var renderer = makeRenderer(input, options);
+    var elem = renderer.toDOM();
+    if (baseDomEle) baseDomEle.appendChild(elem);
+
+    if (renderer.backend.name === 'mathjax') {
+        mathjaxTypeset(elem);
+    }
+    return elem;
+}
+
+function renderToString(input, options) {
+    if (input === null || input === undefined)
+        throw 'input cannot be empty';
+
+    var renderer = makeRenderer(input, options);
+    if (renderer.backend.name === 'mathjax') {
+        console.warn('Using MathJax backend -- math may not be rendered.');
+    }
+
+    return renderer.toMarkup();
+}
+
+
+function renderElement(elem, options) {
+    if (!(elem instanceof Element))
+        throw 'a DOM element is required';
+
+    elem.style.display = 'none';
+
+    var renderer = makeRenderer(elem.textContent, options);
+    return renderer.toDOM();
+}
+
+
+function renderClass(className, options) {
+    [].forEach.call(
+        document.getElementsByClassName(className),
+        function (el) { 
+            renderElement(el, options);
         }
-        return elem;
-    },
-    renderToString: function(input, options) {
-        if (input === null || input === undefined)
-            throw 'input cannot be empty';
+    );
+}
 
-        var renderer = makeRenderer(input, options);
-        if (renderer.backend.name === 'mathjax') {
-            console.warn('Using MathJax backend -- math may not be rendered.');
-        }
-
-        return renderer.toMarkup();
-    },
-    renderElement: function(elem, options) {
-        if (!(elem instanceof Element))
-            throw 'a DOM element is required';
-
-        elem.style.display = 'none';
-
-        var renderer = makeRenderer(elem.textContent, options);
-        return renderer.toDOM();
-        // var newElem = renderer.toDOM();
-        // elem.replaceWith(newElem);
-
-        // if (renderer.backend) {
-        //     if (renderer.backend.name === 'mathjax') {
-        //         mathjaxTypeset(newElem);
-        //     }
-        // }
-    },
-
-    renderClass: function(className, options) {
-        [].forEach.call(
-            document.getElementsByClassName(className),
-            function(el) { this.renderElement(el, options); }
-        );
-    },
+export {
+    ParseError,
+    render,
+    renderToString,
+    renderElement,
+    renderClass,
 };

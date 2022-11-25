@@ -15,8 +15,8 @@ function toString(obj) {
     return parts.join(', ');
 }
 
-module.exports = {
-    isString: isString,
-    isObject: isObject,
-    toString: toString,
+export{
+    isString,
+    isObject,
+    toString,
 };

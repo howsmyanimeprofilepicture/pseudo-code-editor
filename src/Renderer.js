@@ -1,6 +1,6 @@
 /*
 * */
-var utils = require('./utils');
+import {isString} from './utils';
 
 /*
  * TextStyle - used by TextEnvironment class to handle LaTeX text-style
@@ -364,7 +364,7 @@ HTMLBuilder.prototype._beginTag = function(tag, className, style, extraStyle) {
     if (className) spanHTML += ' class="' + className + '"';
     if (style) {
         var styleCode;
-        if (utils.isString(style)) styleCode = style;
+        if (isString(style)) styleCode = style;
         else { // style
             styleCode = '';
             for (var attrName in style) {
@@ -878,4 +878,4 @@ Renderer.prototype._buildTree = function(node) {
     }
 };
 
-module.exports = Renderer;
+export default Renderer;

@@ -85,8 +85,8 @@
  * the structure of resulting program closely mirrors that of the grammar. *
  *
  */
-var utils = require('./utils');
-var ParseError = require('./ParseError');
+import {toString} from './utils';
+import ParseError from './ParseError';
 
 var ParseNode = function(type, val) {
     this.type = type;
@@ -101,7 +101,7 @@ ParseNode.prototype.toString = function(level) {
     for (var i = 0; i < level; i++) indent += '  ';
 
     var res = indent + '<' + this.type + '>';
-    if (this.value) res += ' (' + utils.toString(this.value) + ')';
+    if (this.value) res += ' (' + toString(this.value) + ')';
     res += '\n';
 
     if (this.children) {
@@ -529,4 +529,4 @@ Parser.prototype._parseAtom = function() {
     return null;
 };
 
-module.exports = Parser;
+export default Parser;

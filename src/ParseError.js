@@ -18,4 +18,4 @@ function ParseError(message, pos, input) {
 ParseError.prototype = Object.create(Error.prototype);
 ParseError.prototype.constructor = ParseError;
 
-module.exports = ParseError;
+export default ParseError;

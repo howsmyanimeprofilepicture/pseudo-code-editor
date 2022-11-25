@@ -18,7 +18,7 @@
     "source": "src/index.html",
     "scripts": {
         "start": "parcel",
-        "build": "parcel build src/index.html --dist-dir docs --public-url /pseudo-code-editor"
+        "build": "parcel build src/index.html"
     },
     "dependencies": {
         "html2canvas": "^1.4.1",
