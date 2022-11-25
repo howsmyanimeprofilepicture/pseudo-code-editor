@@ -1,3 +1,5 @@
+echo "hi"
+rm docs -rf
 npx parcel build \
-    --public-url https://howsmyanimeprofilepicture.github.io/pseudo-code-editor\
+    --public-url /pseudo-code-editor\
     --dist-dir docs
