@@ -1,0 +1,46 @@
+@import url(http://cdn.jsdelivr.net/gh/joungkyun/font-d2coding/d2coding.css);
+
+.editor,.preview {
+    height: 90vh;
+    width: 40vw;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+button{
+    background-color: black;
+    color: white;
+    border-radius: 5;
+    width: 80px;
+    height: 25px;
+    border: none;
+}
+
+button:hover{
+    cursor: grab;
+    background-color: green;
+}
+
+.editor{
+    font-family: D2Coding;
+    font-size: 12pt;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+#rendered{
+    resize: both;
+    overflow:auto;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 15px;
+}
+
+@media screen and (min-width: 1050px)  {
+    .editor,.preview {
+        height: 90vh;
+        width: 500px;
+    }
+}
+

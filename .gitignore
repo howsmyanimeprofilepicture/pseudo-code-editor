@@ -6,3 +6,4 @@ static/katex/
 static/fonts/
 npm-debug.log
 package-lock.json
+.parcel-cache

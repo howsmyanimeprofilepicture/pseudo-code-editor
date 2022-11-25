@@ -2,10 +2,10 @@
  * The entry points of pseudocode-js
  **/
 
-var ParseError = require('./src/ParseError');
-var Lexer = require('./src/Lexer');
-var Parser = require('./src/Parser');
-var Renderer = require('./src/Renderer');
+var ParseError = require('./ParseError');
+var Lexer = require('./Lexer');
+var Parser = require('./Parser');
+var Renderer = require('./Renderer');
 
 function makeRenderer(data, options) {
     var lexer = new Lexer(data);
@@ -57,14 +57,15 @@ module.exports = {
         elem.style.display = 'none';
 
         var renderer = makeRenderer(elem.textContent, options);
-        var newElem = renderer.toDOM();
-        elem.replaceWith(newElem);
+        return renderer.toDOM();
+        // var newElem = renderer.toDOM();
+        // elem.replaceWith(newElem);
 
-        if (renderer.backend) {
-            if (renderer.backend.name === 'mathjax') {
-                mathjaxTypeset(newElem);
-            }
-        }
+        // if (renderer.backend) {
+        //     if (renderer.backend.name === 'mathjax') {
+        //         mathjaxTypeset(newElem);
+        //     }
+        // }
     },
 
     renderClass: function(className, options) {
