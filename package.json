@@ -7,7 +7,7 @@
         "url": "https://saswatpadhi.github.io/"
     },
     "description": "Beautiful pseudocode for the Web",
-    "main": "pseudocode.js",
+
     "repository": {
         "type": "git",
         "url": "git://github.com/SaswatPadhi/pseudocode.js"
