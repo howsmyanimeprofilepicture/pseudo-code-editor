@@ -2,7 +2,56 @@
 .editor,.preview {
     height: 90vh;
     width: 40vw;
+    position: relative;
 }
+
+
+.hl-kw2{
+    font-weight: normal;
+    font-style: italic;
+    color: rgb(10, 42, 10);
+
+}
+.hl-kw1{
+    color: rgb(27, 4, 237);
+
+    /* font-weight: bold; */
+}
+
+.hl>p{
+    /* padding: 0px; */
+    margin: 0px;
+    line-height: 120%;
+    font-size: 12pt;
+}
+
+
+textarea,
+pre.hl{
+    position: absolute;
+    width: 98%;
+    height: 99%;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    background-color: transparent;
+    font-size: 12pt;
+    overflow: hidden;
+    resize: none;
+}
+textarea{
+    color: transparent;
+    caret-color: black;
+    white-space: nowrap;
+}
+pre.hl{
+    color: rgb(0, 0, 0);
+}
+
+.editor{
+    background-color: rgb(255, 255, 255);
+}
+
 
 .container {
     display: flex;
@@ -28,12 +77,15 @@ button:hover{
     font-family: monospace;
     font-size: 12pt;
     border: 1px solid rgba(0, 0, 0, 0.5);
+    resize: both;
+    overflow:auto;
 }
 #rendered{
     resize: both;
     overflow:auto;
     border: 1px solid rgba(0, 0, 0, 0.5);
     padding: 15px;
+    background-color: white;
 }
 
 @media screen and (min-width: 1050px)  {

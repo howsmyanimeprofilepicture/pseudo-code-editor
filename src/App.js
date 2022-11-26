@@ -4,7 +4,7 @@ import "./App.css"
 import "./pseudocode.css"
 import {initialRawScript} from "./constants";
 import html2canvas from 'html2canvas';
-
+import highlighting from "./highlighting";
 
 export function App() {
     const [rawScript, setRawScript] = useState(initialRawScript)
@@ -29,12 +29,18 @@ export function App() {
     useEffect(()=>{
         render(rawScript)
     },[] )
+
+
+    
     
     
     return (
     <div className="container">
+        <div className="editor">
+            <pre
+                className="hl" 
+                dangerouslySetInnerHTML={{__html: highlighting(rawScript)}}/>
         <textarea 
-            className="editor"
             onChange={e => {
                 e.preventDefault();
                 setRawScript(e.target.value);
@@ -59,6 +65,10 @@ export function App() {
                 setRawScript(s);
             }}
         >{rawScript}</textarea>
+        
+        </div>
+
+        
         <div className="preview" >
             <div id="rendered" dangerouslySetInnerHTML={{__html: rendered}}></div>
             <button onClick={async (e)=>{
