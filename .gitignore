@@ -8,3 +8,4 @@ npm-debug.log
 package-lock.json
 .parcel-cache
 dist
+testBuild

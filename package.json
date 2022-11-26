@@ -12,8 +12,8 @@
     "source": "src/index.html",
     "scripts": {
         "start": "parcel",
-        "buildTest": "parcel build src/index.html --public-url /docs --dist-dir docs",
-        "build": "parcel build src/index.html --public-url /pseudo-code-editor --dist-dir docs"
+        "buildTest": "rm testBuild -rf; parcel build src/index.html --public-url /testBuild --dist-dir testBuild;",
+        "build": "rm docs -rf; parcel build src/index.html --public-url /pseudo-code-editor --dist-dir docs;"
     },
     "dependencies": {
         "html2canvas": "^1.4.1",

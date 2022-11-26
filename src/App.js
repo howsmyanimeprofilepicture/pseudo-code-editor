@@ -41,7 +41,23 @@ export function App() {
                 render(e.target.value);
             }}
             value={rawScript}
-            
+            onKeyDown={e => {
+                if (e.key != "Tab") return;
+                
+                e.preventDefault();
+                const tempLoc = e.target.selectionStart;
+                const s = (
+                    rawScript.slice(0, tempLoc) 
+                    + "    " 
+                    + rawScript.slice(tempLoc)
+                );
+                
+                e.target.value = s;
+                e.target.focus();
+                e.target.setSelectionRange(tempLoc+4, tempLoc+4);
+                render(s);
+                setRawScript(s);
+            }}
         >{rawScript}</textarea>
         <div className="preview" >
             <div id="rendered" dangerouslySetInnerHTML={{__html: rendered}}></div>
